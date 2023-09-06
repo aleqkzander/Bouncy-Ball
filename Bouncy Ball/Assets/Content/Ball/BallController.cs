@@ -20,6 +20,11 @@ public class BallController : MonoBehaviour
         rigidbody.velocity = Vector2.up * ballSpeed;
     }
 
+    private void Update()
+    {
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Return when not ball
@@ -33,8 +38,6 @@ public class BallController : MonoBehaviour
 
         // Set velocity with direction * speed
         rigidbody.velocity = direction * ballSpeed;
-
-        transform.localScale = new(direction.x, direction.y);
     }
 
     private float HitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
