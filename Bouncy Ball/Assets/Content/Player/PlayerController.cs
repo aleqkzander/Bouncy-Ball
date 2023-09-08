@@ -1,26 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject PauseUI;
     new Rigidbody2D rigidbody;
-    public float moveSpeed = 15f;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-    }
-
     private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        rigidbody.velocity = new Vector3(horizontalInput, 0f, 0f) * moveSpeed;
+        if (Input.GetMouseButton(0))
+        {
+            PauseUI.SetActive(false);
+            Time.timeScale = 1.0f;
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            rigidbody.transform.position = new(mousePosition.x, transform.position.y);
+        }
+        else
+        {
+            PauseUI.SetActive(true);
+            Time.timeScale = 0.1f;
+        }
     }
 }
