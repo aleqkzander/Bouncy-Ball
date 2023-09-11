@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    public GameObject collisionObject;
     public float ballSpeed = 15.0f;
     new Rigidbody2D rigidbody;
 
@@ -17,6 +18,9 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        ContactPoint2D collisionPoint = collision.contacts[0];
+        Instantiate(collisionObject, collisionPoint.point, Quaternion.identity);
+
         if (!collision.gameObject.CompareTag("Player")) return;
 
         // Shoot the ball acording to his impactpoint on the player

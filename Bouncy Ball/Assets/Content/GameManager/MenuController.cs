@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class MenuController : MonoBehaviour
 {
@@ -10,11 +8,11 @@ public class MenuController : MonoBehaviour
     public GameObject MainMenu;
     public TMP_InputField NameInput;
 
-    private void Start()
+    private void Awake()
     {
         string playerName = PlayerPrefs.GetString("name");
-        if (playerName != string.Empty) { NameMenu.SetActive(false); MainMenu.SetActive(true); }
-        else { NameMenu.SetActive(true); MainMenu.SetActive(false); }
+        //if (playerName != string.Empty) { NameMenu.SetActive(false); MainMenu.SetActive(true); }
+        //else { NameMenu.SetActive(true); MainMenu.SetActive(false); }
     }
 
     public void LoadGameScene()
