@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Object : MonoBehaviour
 {
+    public int value;
     public GameObject dollarPickup;
     public GameObject bombPickup;
     private GameManager gameManager;
@@ -12,6 +13,7 @@ public class Object : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         playerStatistic = FindObjectOfType<PlayerStatistic>();
+        if (value == 5000) GetComponent<Animator>().SetTrigger("Is5000");
     }
 
     private void Start()
@@ -29,9 +31,8 @@ public class Object : MonoBehaviour
     private void PickupDollar(Vector2 position)
     {
         GameObject dollarObject = Instantiate(dollarPickup, position, Quaternion.identity);
-        int amountToAdd = 100;
-        dollarObject.GetComponent<DollarCollision>().SetAmountText(amountToAdd);
-        playerStatistic.gameInstanceScore += amountToAdd;
+        dollarObject.GetComponent<DollarCollision>().SetAmountText(value);
+        playerStatistic.gameInstanceScore += value;
         Destroy(gameObject);
     }
 
